@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../store";
 
-interface Note {
+export interface Note {
   id: number;
   name: string;
   created: string;
@@ -14,6 +14,13 @@ interface Note {
 interface NotesState {
   noteList: Array<Note>;
 }
+
+interface ChangeStatusPayload {
+  id: number;
+  status: boolean;
+}
+
+interface EditData extends Partial<Omit<Note, "created" | "isActive">> {}
 
 const initialState: NotesState = {
   noteList: [
@@ -96,20 +103,35 @@ export const noteSlice = createSlice({
         (note) => note.id !== action.payload
       );
     },
-    editNote: (state, action: PayloadAction<Note>) => {
+    editNote: (state, action: PayloadAction<EditData>) => {
       state.noteList = state.noteList.map((el) => {
         if (el.id === action.payload.id) {
-          return action.payload;
+          return { ...el, ...action.payload };
         } else {
           return el;
         }
       });
     },
+    changeStatus: {
+      reducer: (state, action: PayloadAction<ChangeStatusPayload>) => {
+        const { id, status } = action.payload;
+        const currentNote = state.noteList.find((el) => el.id === id);
+        if (currentNote) {
+          currentNote.isActive = status;
+        }
+      },
+      prepare: (id: number, status: boolean) => ({ payload: { id, status } }),
+    },
   },
 });
 
-export const { addNote, removeNote, editNote } = noteSlice.actions;
+export const { addNote, removeNote, editNote, changeStatus } =
+  noteSlice.actions;
 
 export const getNotesList = (state: RootState) => state.noteList.noteList;
+export const getActiveNotes = (state: RootState) =>
+  state.noteList.noteList.filter((item) => item.isActive);
+export const getArchiveNotes = (state: RootState) =>
+  state.noteList.noteList.filter((item) => !item.isActive);
 
 export default noteSlice.reducer;

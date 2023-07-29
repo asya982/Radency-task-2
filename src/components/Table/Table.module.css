@@ -1,0 +1,14 @@
+.headers {
+  color: var(--primary) !important;
+}
+
+.headers:last-of-type {
+  display: flex;
+  justify-content: center;
+  padding: 16px 0;
+  padding-right: 18px;  
+}
+
+.headers img {
+  margin: 0 12px;
+}
