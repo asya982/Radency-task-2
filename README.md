@@ -1,4 +1,4 @@
-# Little Notes App
+# [Little Notes App](https://adorable-yeot-b40ad7.netlify.app/)
 
 A simple web application for managing notes, built with React, TypeScript, and Redux Toolkit. The app allows users to perform CRUD (Create, Read, Update, Delete) operations on notes, archive/unarchive notes, and view a summary table by categories.
 
