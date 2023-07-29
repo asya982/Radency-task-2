@@ -25,11 +25,11 @@ A simple web application for managing notes, built with React, TypeScript, and R
 
 1. Clone the repository.
     ```
-    git clone https://github.com/your-username/little-notes-app.git
+    git clone https://github.com/asya982/Radency-task-2.git
     ```
 2. Install the dependencies.
     ```
-    cd little-notes-app
+    cd Radency-task-2
     npm install
     ```
 
