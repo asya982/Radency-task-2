@@ -9,8 +9,6 @@ import archiveIcon from "../../assets/img/icons/archiveIcon.svg";
 import deleteIcon from "../../assets/img/icons/deleteIcon.svg";
 import editIcon from "../../assets/img/icons/editIcon.svg";
 import unarchiveIcon from "../../assets/img/icons/unarchiveIcon.svg";
-import styles from "./NoteItem.module.css";
-import { Button } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import ModalForm from "../ModalForm/ModalForm";
 
@@ -38,24 +36,28 @@ const NoteItem: FC<Note> = ({
 
   return (
     <tr>
-      <td className={styles.nameItem}>
-        <img src={noteCategory?.icon} alt={noteCategory?.title} />
+      <td className="item-photo">
+        <img
+          src={noteCategory?.icon}
+          alt={noteCategory?.title}
+          className="my-5 ml-10 image"
+        />
         {name}
       </td>
       <td>{created}</td>
       <td>{noteCategory?.title}</td>
-      <td className={styles.cutEdges}>{content}</td>
-      <td style={{minWidth:"250px"}} className={styles.cutEdges}>{dates.join(", ")}</td>
-      <td>
-        <Button variant="ligth" onClick={() => setOpenModal(true)}>
+      <td className="cutEdges">{content}</td>
+      <td className="cutEdges pl-3">{dates.join(", ")}</td>
+      <td className="flex items-center gap-3 justify-center">
+        <button onClick={() => setOpenModal(true)}>
           <img src={editIcon} alt="editIcon" />
-        </Button>
-        <Button variant="ligth" onClick={() => archiveItem(!isActive)}>
+        </button>
+        <button onClick={() => archiveItem(!isActive)}>
           <img src={isActive ? archiveIcon : unarchiveIcon} alt="statusIcon" />
-        </Button>
-        <Button variant="ligth" onClick={deleteItem}>
+        </button>
+        <button onClick={deleteItem}>
           <img src={deleteIcon} alt="deleteIcon" />
-        </Button>
+        </button>
       </td>
       <ModalForm
         show={openModal}
