@@ -1,13 +1,4 @@
 import React, { FC } from "react";
-import styles from "./ModalForm.module.css";
-import {
-  Button,
-  FormControl,
-  FormGroup,
-  FormLabel,
-  FormSelect,
-  Modal,
-} from "react-bootstrap";
 import {
   Note,
   addNote,
@@ -69,60 +60,69 @@ const ModalForm: FC<ModalFormProps> = ({
   };
 
   return (
-    <Modal {...{ show, onHide }}>
-      <Modal.Header closeButton>
-        <Modal.Title>{isCreate ? "Create" : "Edit"} Note</Modal.Title>
-      </Modal.Header>
+    <div
+      className={`fixed top-0 left-0 w-full h-full flex items-center justify-center ${
+        show ? "block" : "hidden"
+      }`}
+    >
+      <div className="bg-white w-96 p-6 rounded shadow-lg border">
+        <h3 className="text-xl font-bold mb-4">
+          {isCreate ? "Create" : "Edit"} Note
+        </h3>
 
-      <Modal.Body>
-        <Formik
-          initialValues={initialValues}
-          onSubmit={submitForm}
-          validationSchema={validationSchema}
-          validateOnMount={true}
-        >
-          {({ isValid, errors, touched }) => (
-            <Form className={styles.form}>
-              <FormGroup>
-                <FormLabel>Note's name:</FormLabel>
-                <Field name="name" as={FormControl} />
-              </FormGroup>
-              <FormGroup>
-                <FormLabel>Choose category:</FormLabel>
-                <Field as={FormSelect} name="category">
-                  {categories.map((item, index) => (
-                    <option key={index} value={item.id}>
-                      {item.title}
-                    </option>
-                  ))}
-                </Field>
-              </FormGroup>
-              <FormGroup>
-                <FormLabel>Content:</FormLabel>
-                <Field
-                  name="content"
-                  className="form-control"
-                  as="textarea"
-                  rows={3}
-                />
-              </FormGroup>
-              <div className={styles.controlButtons}>
-                <Button variant="outline-secondary" onClick={onHide}>
-                  Cancel
-                </Button>
-                <Button
-                  className="fancyButton"
-                  type="submit"
-                  disabled={!isValid}
-                >
-                  {isCreate ? "Create" : "Save changes"}
-                </Button>
-              </div>
-            </Form>
-          )}
-        </Formik>
-      </Modal.Body>
-    </Modal>
+        <div>
+          <Formik
+            initialValues={initialValues}
+            onSubmit={submitForm}
+            validationSchema={validationSchema}
+            validateOnMount={true}
+          >
+            {({ isValid, errors, touched }) => (
+              <Form className="flex flex-col gap-10">
+                <div className="form-group">
+                  <label>Note's name:</label>
+                  <Field name="name" className="input" />
+                </div>
+                <div className="form-group">
+                  <label>Choose category:</label>
+                  <Field name="category" as="select" className="input">
+                    {categories.map((item, index) => (
+                      <option key={index} value={item.id}>
+                        {item.title}
+                      </option>
+                    ))}
+                  </Field>
+                </div>
+                <div className="form-group">
+                  <label>Content:</label>
+                  <Field
+                    name="content"
+                    className="input resize-none"
+                    as="textarea"
+                    rows={3}
+                  />
+                </div>
+                <div className="self-end flex gap-20">
+                  <button
+                    className="border-gray-400 text-gray-400 border-2 rounded-lg py-1 px-2 hover:text-yellow-50 hover:bg-gray-400"
+                    onClick={onHide}
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    className="bg-primary rounded-lg border-2 border-primary self-end py-1 px-2 text-slate-50 hover:text-primary hover:bg-slate-50"
+                    type="submit"
+                    disabled={!isValid}
+                  >
+                    {isCreate ? "Create" : "Save changes"}
+                  </button>
+                </div>
+              </Form>
+            )}
+          </Formik>
+        </div>
+      </div>
+    </div>
   );
 };
 

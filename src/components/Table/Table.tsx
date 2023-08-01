@@ -1,6 +1,4 @@
 import React, { FC, JSX } from "react";
-import styles from "./Table.module.css";
-import Table from "react-bootstrap/Table";
 
 type TableProps = {
   headers: (string | JSX.Element[])[];
@@ -9,18 +7,18 @@ type TableProps = {
 
 const CustomTable: FC<TableProps> = ({ headers, children }) => {
   return (
-    <Table hover>
+    <table className="table-auto border-collapse w-full">
       <thead>
         <tr>
           {headers.map((el, i) => (
-            <th scope="col" key={i} className={styles.headers}>
+            <th  key={i} className='text-primary border-b border-primary pb-4 last-of-type:flex justify-center gap-2 last-of-type:py-4'>
               {el}
             </th>
           ))}
         </tr>
       </thead>
       <tbody>{children}</tbody>
-    </Table>
+    </table>
   );
 };
 

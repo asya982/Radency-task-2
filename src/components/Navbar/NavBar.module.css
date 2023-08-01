@@ -1,7 +1,0 @@
-.Link {
-  color: var(--secondary);
-}
-
-.Link:hover {
-  color: var(--primary);
-}

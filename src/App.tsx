@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { Outlet } from "react-router-dom";
-import "./App.css";
+import "./index.css";
 import Header from "./layout/Header/Header";
 import Footer from "./layout/Footer/Footer";
 import Table from "./components/Table/Table";
@@ -11,9 +11,9 @@ import { categoriesHead } from "./assets/tableHeaders";
 
 const App: FC = () => {
   return (
-    <div className="App">
+    <div className="grid grid-cols-1">
       <Header />
-      <div className="appContainer">
+      <div className="m-5 min-h-[80vh] font-mono">
         <Navbar />
         <Outlet />
         <Table headers={categoriesHead}>

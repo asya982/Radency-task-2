@@ -1,0 +1,25 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+
+.cutEdges{
+    @apply max-w-[200px] overflow-hidden text-ellipsis whitespace-nowrap
+}
+
+.image {
+    @apply max-w-[30px] object-contain
+}
+
+.item-photo {
+    @apply flex gap-5 items-center
+}
+
+.form-group {
+    @apply flex flex-col gap-3
+}
+
+.input {
+    @apply border rounded-lg p-2
+}
+

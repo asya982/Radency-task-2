@@ -1,6 +1,5 @@
 import archiveIcon from "./img/icons/archiveIcon.svg";
 import deleteIcon from "./img/icons/deleteIcon.svg";
-import '../App.css';
 
 export const mainTableHead = [
   "Name",
